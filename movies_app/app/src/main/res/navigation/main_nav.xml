@@ -9,10 +9,18 @@
         android:id="@+id/mainPageFragment"
         android:name="com.ugurtansal.movies_app.MainPageFragment"
         android:label="fragment_main_page"
-        tools:layout="@layout/fragment_main_page" />
+        tools:layout="@layout/fragment_main_page" >
+        <action
+            android:id="@+id/detilsPass"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.ugurtansal.movies_app.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="movieObject"
+            app:argType="com.ugurtansal.movies_app.Filmler" />
+    </fragment>
 </navigation>

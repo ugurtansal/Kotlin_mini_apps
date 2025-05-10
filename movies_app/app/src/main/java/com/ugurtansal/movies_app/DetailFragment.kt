@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.ugurtansal.movies_app.databinding.FragmentDetailBinding
 
 
@@ -18,6 +19,15 @@ class DetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentDetailBinding.inflate(inflater, container, false)
+
+        val bundle: DetailFragmentArgs by navArgs()
+        val movie=bundle.movieObject;
+
+        binding.toolbarDetail.title=movie.ad
+        binding.tvPrice.text="${movie.fiyat} ₺"
+        binding.ivMovie.setImageResource(resources.getIdentifier(movie.resim,"drawable",requireContext().packageName))
+
+
         return binding.root
     }
 
