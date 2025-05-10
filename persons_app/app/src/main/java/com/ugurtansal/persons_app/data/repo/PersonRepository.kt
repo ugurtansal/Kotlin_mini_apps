@@ -4,8 +4,8 @@ import android.util.Log
 import com.ugurtansal.persons_app.data.dataSource.PersonDataSource
 import com.ugurtansal.persons_app.data.entity.Kisiler
 
-class PersonRepository {
-    var personsDataSource= PersonDataSource()
+class PersonRepository (var personsDataSource: PersonDataSource) {
+    //var personsDataSource= PersonDataSource()
 
     suspend fun save(personName:String, personGsm:String)= personsDataSource.save(personName, personGsm);
 
