@@ -17,6 +17,7 @@ import com.ugurtansal.persons_app.databinding.FragmentMainPageBinding
 import com.ugurtansal.persons_app.ui.adapter.PersonAdapter
 import com.ugurtansal.persons_app.ui.viewModel.MainPageViewModel
 import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
+import com.ugurtansal.persons_app.utils.pass
 import kotlin.getValue
 
 
@@ -33,7 +34,8 @@ class MainPageFragment : Fragment() {
 
 
         binding.fab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.personSavePass);
+//            Navigation.findNavController(it).navigate(R.id.personSavePass); //We used Extension function in utils and use it down
+            Navigation.pass(it,R.id.personSavePass)
         }
 
 
