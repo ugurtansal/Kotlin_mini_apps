@@ -18,9 +18,10 @@ import com.ugurtansal.persons_app.ui.adapter.PersonAdapter
 import com.ugurtansal.persons_app.ui.viewModel.MainPageViewModel
 import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
 import com.ugurtansal.persons_app.utils.pass
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
-
+@AndroidEntryPoint
 class MainPageFragment : Fragment() {
     private lateinit var binding: FragmentMainPageBinding
     private lateinit var viewModel: MainPageViewModel

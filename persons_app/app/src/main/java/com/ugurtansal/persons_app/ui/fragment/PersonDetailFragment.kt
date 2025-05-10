@@ -12,8 +12,10 @@ import com.ugurtansal.persons_app.R
 import com.ugurtansal.persons_app.databinding.FragmentPersonDetailBinding
 import com.ugurtansal.persons_app.ui.viewModel.PersonDetailViewModel
 import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.getValue
 
+@AndroidEntryPoint
 class PersonDetailFragment : androidx.fragment.app.Fragment() {
     private lateinit var binding: FragmentPersonDetailBinding
     private lateinit var viewModel: PersonDetailViewModel

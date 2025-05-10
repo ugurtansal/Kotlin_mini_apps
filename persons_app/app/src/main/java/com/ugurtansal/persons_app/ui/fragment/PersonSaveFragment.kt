@@ -10,8 +10,9 @@ import androidx.fragment.app.viewModels
 import com.ugurtansal.persons_app.R
 import com.ugurtansal.persons_app.databinding.FragmentPersonSaveBinding
 import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class PersonSaveFragment : Fragment() {
     private lateinit var binding: FragmentPersonSaveBinding
     private lateinit var viewModel: PersonSaveViewModel
