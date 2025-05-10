@@ -14,6 +14,7 @@ import com.ugurtansal.persons_app.databinding.CardDesignBinding
 import com.ugurtansal.persons_app.databinding.FragmentMainPageBinding
 import com.ugurtansal.persons_app.ui.fragment.MainPageFragmentDirections
 import com.ugurtansal.persons_app.ui.viewModel.MainPageViewModel
+import com.ugurtansal.persons_app.utils.pass
 
 class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>,var viewModel: MainPageViewModel)
     : RecyclerView.Adapter<PersonAdapter.CardDesignHolder>()
@@ -37,7 +38,8 @@ class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>,var vie
 
         t.cardViewRow.setOnClickListener {
             val pass= MainPageFragmentDirections.personDetailPass(kisi = person)
-            Navigation.findNavController(it).navigate(pass)
+            //Navigation.findNavController(it).navigate(pass) //We create Extension function in utils (overload) and use it down
+            Navigation.pass(it,pass)
         }
 
         t.imageViewDelete.setOnClickListener {
