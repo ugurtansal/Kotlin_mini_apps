@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.ugurtansal.persons_app.R
 import com.ugurtansal.persons_app.databinding.FragmentPersonSaveBinding
+import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
 
 
 class PersonSaveFragment : Fragment() {
     private lateinit var binding: FragmentPersonSaveBinding
+    private lateinit var viewModel: PersonSaveViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,16 +28,20 @@ class PersonSaveFragment : Fragment() {
             val name= binding.editTextPersonName.text.toString()
             val gsm= binding.editTextPersonGsm.text.toString()
 
-            save(name, gsm)
+            viewModel.save(name, gsm)
         }
 
         return binding.root
     }
 
 
-    fun save(personName:String, personGsm:String){
-        Log.e("Kişi kaydet", "Kişi kaydedildi: $personName, $personGsm", null)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: PersonSaveViewModel by viewModels()
+        viewModel= tempViewModel
     }
+
+
 
 
 }

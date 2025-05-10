@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -14,10 +15,14 @@ import com.ugurtansal.persons_app.R
 import com.ugurtansal.persons_app.data.entity.Kisiler
 import com.ugurtansal.persons_app.databinding.FragmentMainPageBinding
 import com.ugurtansal.persons_app.ui.adapter.PersonAdapter
+import com.ugurtansal.persons_app.ui.viewModel.MainPageViewModel
+import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
+import kotlin.getValue
 
 
 class MainPageFragment : Fragment() {
     private lateinit var binding: FragmentMainPageBinding
+    private lateinit var viewModel: MainPageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +46,7 @@ class MainPageFragment : Fragment() {
         personsList.add(person2)
         personsList.add(person3)
 
-        val personAdapter= PersonAdapter(requireContext(), personsList);
+        val personAdapter= PersonAdapter(requireContext(), personsList, viewModel);
 
         binding.personRv.adapter= personAdapter;
         binding.personRv.layoutManager= LinearLayoutManager(requireContext()) //Alt alta görünmesi için LinearLayoutManager kullandık
@@ -65,6 +70,12 @@ class MainPageFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: MainPageViewModel by viewModels()
+        viewModel= tempViewModel
     }
 
 

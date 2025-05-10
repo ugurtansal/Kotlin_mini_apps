@@ -13,8 +13,9 @@ import com.ugurtansal.persons_app.data.entity.Kisiler
 import com.ugurtansal.persons_app.databinding.CardDesignBinding
 import com.ugurtansal.persons_app.databinding.FragmentMainPageBinding
 import com.ugurtansal.persons_app.ui.fragment.MainPageFragmentDirections
+import com.ugurtansal.persons_app.ui.viewModel.MainPageViewModel
 
-class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>)
+class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>,var viewModel: MainPageViewModel)
     : RecyclerView.Adapter<PersonAdapter.CardDesignHolder>()
 {
 
@@ -43,7 +44,7 @@ class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>)
             Snackbar.make(it,"${person.kisi_ad} silinsin?", Snackbar.LENGTH_SHORT)
                 .setAction("Evet") {
 
-                    delete(person.kisi_id);
+                    viewModel.delete(person.kisi_id);
                    // Snackbar.make(it,"${person.kisi_ad} silindi", Snackbar.LENGTH_SHORT).show()
                 }.show()
 
@@ -55,8 +56,6 @@ class PersonAdapter(var mContext: Context,var personsList: List<Kisiler>)
         return personsList.size
     }
 
-    fun delete(personId: Int){
-        Log.e("Kişi sil", "Kişi silindi: $personId", null)
-    }
+
 
 }

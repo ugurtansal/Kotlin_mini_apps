@@ -6,12 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ugurtansal.persons_app.R
 import com.ugurtansal.persons_app.databinding.FragmentPersonDetailBinding
+import com.ugurtansal.persons_app.ui.viewModel.PersonDetailViewModel
+import com.ugurtansal.persons_app.ui.viewModel.PersonSaveViewModel
+import kotlin.getValue
 
 class PersonDetailFragment : androidx.fragment.app.Fragment() {
     private lateinit var binding: FragmentPersonDetailBinding
+    private lateinit var viewModel: PersonDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,16 +34,18 @@ class PersonDetailFragment : androidx.fragment.app.Fragment() {
             val personName= binding.editTextPersonName.text.toString()
             val personGsm= binding.editTextPersonGsm.text.toString()
 
-            update(person.kisi_id,personName, personGsm)
+            viewModel.update(person.kisi_id,personName, personGsm)
         }
 
         return binding.root
     }
 
-    fun update(personId:Int,personName:String, personGsm:String){
-        //Güncelleme işlemi burada yapılacak
-        Log.e("Kişi güncelle", "Kişi güncellendi: $personId, $personName, $personGsm", null)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: PersonDetailViewModel by viewModels()
+        viewModel= tempViewModel
     }
+
 
 
 }
