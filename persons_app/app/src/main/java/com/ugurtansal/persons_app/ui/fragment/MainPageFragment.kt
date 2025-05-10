@@ -37,18 +37,17 @@ class MainPageFragment : Fragment() {
         }
 
 
-        val personsList= ArrayList<Kisiler>()
-        val person1= Kisiler(1, "Ali", "123456789")
-        val person2= Kisiler(2, "Ayşe", "987654321")
-        val person3= Kisiler(3, "Mehmet", "456789123")
+       viewModel.peopleList.observe(viewLifecycleOwner){
+       //Dinleme
+           val personAdapter= PersonAdapter(requireContext(), it, viewModel);
+           binding.personRv.adapter= personAdapter;
+       }
 
-        personsList.add(person1)
-        personsList.add(person2)
-        personsList.add(person3)
 
-        val personAdapter= PersonAdapter(requireContext(), personsList, viewModel);
 
-        binding.personRv.adapter= personAdapter;
+
+
+
         binding.personRv.layoutManager= LinearLayoutManager(requireContext()) //Alt alta görünmesi için LinearLayoutManager kullandık
 //        binding.personRv.layoutManager=
 //            StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL) //Instagram hikaye tarzı görünüm için StaggeredGridLayoutManager kullandık , 1 tane görünecek ve yana doğru kayacak
@@ -58,13 +57,13 @@ class MainPageFragment : Fragment() {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 //Arama butonuna tıklandığında çalışır
-                search(query)
+                viewModel.search(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 //Harf girdikçe çalışır
-                search(newText)
+                viewModel.search(newText)
                 return false
             }
         })
@@ -79,9 +78,6 @@ class MainPageFragment : Fragment() {
     }
 
 
-    fun search(searchingWord: String){
-        Log.e("Kişi ara", "Kişi arama: $searchingWord", null)
-    }
 
 
     override fun onResume() {
