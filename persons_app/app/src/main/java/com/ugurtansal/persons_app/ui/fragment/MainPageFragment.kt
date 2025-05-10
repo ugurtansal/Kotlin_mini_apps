@@ -82,7 +82,7 @@ class MainPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume();
-        Log.e("Kişi Anasayfa", "Ana sayfaya dönüldü ", null)
+       viewModel.loadPeople();
     }
 
 }

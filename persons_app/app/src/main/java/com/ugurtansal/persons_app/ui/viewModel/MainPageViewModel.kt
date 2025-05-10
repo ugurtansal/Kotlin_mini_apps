@@ -20,6 +20,7 @@ class MainPageViewModel : ViewModel(){
     fun delete(personId: Int){
         CoroutineScope(Dispatchers.Main).launch { //suspend olmasını engellemek için
             personsRepository.delete(personId)
+            loadPeople()
         }
     }
 
