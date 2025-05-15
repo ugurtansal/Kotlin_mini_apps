@@ -1,6 +1,7 @@
 package com.ugurtansal.persons_app.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -17,4 +18,10 @@ interface KisilerDao { //DAO=Database Access Object
 
     @Update
     suspend fun update(kisi: Kisiler) //Kişi güncelleme işlemi için bir fonksiyon tanımlıyoruz
+
+    @Delete
+    suspend fun delete(kisi: Kisiler)
+
+    @Query("SELECT * FROM kisiler WHERE kisi_ad LIKE '%' || :searchedWord ||'%'")
+    suspend fun search(searchedWord: String): List<Kisiler> //Kişi arama işlemi için bir fonksiyon tanımlıyoruz
 }

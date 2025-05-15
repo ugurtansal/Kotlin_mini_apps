@@ -22,7 +22,9 @@ class PersonDataSource(var kisiDao: KisilerDao) {
     }
 
     suspend fun delete(personId: Int){
-        Log.e("Kişi sil", "Kişi silindi: $personId", null)
+        val deletedPerson= Kisiler(personId,"","");
+        kisiDao.delete(deletedPerson);
+       // Log.e("Kişi sil", "Kişi silindi: $personId", null)
     }
 
     suspend fun loadPeople(): List<Kisiler> = withContext(Dispatchers.IO){
@@ -32,12 +34,8 @@ class PersonDataSource(var kisiDao: KisilerDao) {
     }
 
     suspend fun search(searchedWord: String): List<Kisiler> = withContext(Dispatchers.IO){
-        val personsList= ArrayList<Kisiler>()
-        val person1= Kisiler(1, "Ali", "123456789")
 
-        personsList.add(person1)
-
-        return@withContext personsList
+        return@withContext kisiDao.search(searchedWord);
 
     }
 
